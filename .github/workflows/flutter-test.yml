@@ -1,0 +1,18 @@
+name: Run Flutter Test
+on: push
+jobs:
+  flutter-test-on-push:
+    runs-on: macos-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.19.3
+      - name: Run Flutter doctor
+        run: flutter doctor
+      - name: Run Flutter Test
+        run: flutter test
+
