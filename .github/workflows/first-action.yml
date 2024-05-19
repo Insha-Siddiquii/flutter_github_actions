@@ -1,0 +1,10 @@
+name: First Flutter Worflow
+on: workflow_dispatch #on is event to trigger, this is the event to manually start workflow
+jobs:
+  first-flutter-job: 
+    runs-on: macos-latest
+    steps:
+      - name: Print greeting
+        run: echo "Hello World!"
+      - name: Print good bye
+        run: echo "Good bye"
