@@ -1,5 +1,9 @@
 name: Flutter Build APK (android debug)
-on: [push, workflow_dispatch]
+on: 
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
 jobs:
   run-flutter-test:
     runs-on: macos-latest
