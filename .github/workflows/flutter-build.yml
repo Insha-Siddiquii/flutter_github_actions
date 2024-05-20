@@ -4,6 +4,9 @@ on:
     types:
       - opened
   workflow_dispatch:
+  push: 
+    branches:
+      - main
 jobs:
   run-flutter-test:
     runs-on: macos-latest
