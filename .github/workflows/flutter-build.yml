@@ -15,15 +15,15 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v4
         with:
-          path: /Users/runner/hostedtoolcache/flutter/stable-$FLUTTER_VERSION-arm64
-          key: ${{ runner.OS }}-flutter-install-cache-${{ '/Users/runner/hostedtoolcache/flutter/stable-$FLUTTER_VERSION-arm64' }}
+          path: /Users/runner/hostedtoolcache/flutter/stable-${{ env.FLUTTER_VERSION }}-arm64
+          key: ${{ runner.OS }}-flutter-install-cache-${{ '/Users/runner/hostedtoolcache/flutter/stable-${{ env.FLUTTER_VERSION }}-arm64' }}
           save-always: true
       - uses: subosito/flutter-action@v1
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: $FLUTTER_VERSION
+          flutter-version: ${{ env.FLUTTER_VERSION }}
       - name: Run Flutter doctor
         run: flutter doctor
       - name: Run Flutter Test
@@ -39,14 +39,14 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v4
         with:
-          path: /Users/runner/hostedtoolcache/flutter/stable-$FLUTTER_VERSION-arm64
-          key: ${{ runner.OS }}-flutter-install-cache-${{ '/Users/runner/hostedtoolcache/flutter/stable-$FLUTTER_VERSION-arm64' }}
+          path: /Users/runner/hostedtoolcache/flutter/stable-${{ env.FLUTTER_VERSION }}-arm64
+          key: ${{ runner.OS }}-flutter-install-cache-${{ '/Users/runner/hostedtoolcache/flutter/stable-${{ env.FLUTTER_VERSION }}-arm64' }}
           save-always: true
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: $FLUTTER_VERSION
+          flutter-version: ${{ env.FLUTTER_VERSION }}
       # OPTIONAL WORK
       # - name: Run Flutter doctor
       #   run: flutter doctor 
