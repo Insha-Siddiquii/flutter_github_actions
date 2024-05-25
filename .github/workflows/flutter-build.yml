@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 env:
   FLUTTER_VERSION: 3.19.3
+  APP_KEY_STORE: ${{ secrets.APP_KEY_STORE }}
 jobs:
   run-flutter-test:
     runs-on: macos-latest
@@ -72,3 +73,5 @@ jobs:
           run: ls
         - name: Output apk file name
           run: echo "${{ needs.run-flutter-build.outputs.apk-file }}"
+        - name: Show secret 
+          run: echo "APP_KEY_STORE -> ${{ secrets.APP_KEY_STORE }}"
