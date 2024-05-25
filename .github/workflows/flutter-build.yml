@@ -22,6 +22,8 @@ jobs:
   run-flutter-build:
     needs: run-flutter-test
     runs-on: macos-latest
+    outputs:
+        apk-file: ${{ steps.publish-apk.outputs.apk-file }}
     steps:
       - name: Clone Repository
         uses: actions/checkout@v4
@@ -34,6 +36,9 @@ jobs:
         run: flutter doctor
       - name: Run Flutter Build (android)
         run: flutter build apk --debug
+      - name: Publish apk name
+        id: publish-apk
+        run: find build/app/outputs/flutter-apk/*.apk -type f -execdir echo 'apk-file={}' >> $GITHUB_OUTPUT ';'
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -49,3 +54,5 @@ jobs:
             name: build-assets
         - name: Output the build-assets contents
           run: ls
+        - name: Output apk file name
+          run: echo "${{ needs.run-flutter-build.outputs.apk-file }}"
