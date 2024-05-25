@@ -45,8 +45,9 @@ jobs:
         with:
           channel: stable
           flutter-version: 3.19.3
-      - name: Run Flutter doctor
-        run: flutter doctor
+      # OPTIONAL WORK
+      # - name: Run Flutter doctor
+      #   run: flutter doctor 
       - name: Run Flutter Build (android)
         run: flutter build apk --debug
       - name: Publish apk name
