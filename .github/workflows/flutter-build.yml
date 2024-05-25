@@ -4,6 +4,8 @@ on:
     types:
       - opened
   workflow_dispatch:
+env:
+  FLUTTER_VERSION: 3.19.3
 jobs:
   run-flutter-test:
     runs-on: macos-latest
@@ -13,15 +15,15 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v4
         with:
-          path: /Users/runner/hostedtoolcache/flutter/stable-3.19.3-arm64
-          key: ${{ runner.OS }}-flutter-install-cache-${{ '/Users/runner/hostedtoolcache/flutter/stable-3.19.3-arm64' }}
+          path: /Users/runner/hostedtoolcache/flutter/stable-$FLUTTER_VERSION-arm64
+          key: ${{ runner.OS }}-flutter-install-cache-${{ '/Users/runner/hostedtoolcache/flutter/stable-$FLUTTER_VERSION-arm64' }}
           save-always: true
       - uses: subosito/flutter-action@v1
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.19.3
+          flutter-version: $FLUTTER_VERSION
       - name: Run Flutter doctor
         run: flutter doctor
       - name: Run Flutter Test
@@ -37,14 +39,14 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v4
         with:
-          path: /Users/runner/hostedtoolcache/flutter/stable-3.19.3-arm64
-          key: ${{ runner.OS }}-flutter-install-cache-${{ '/Users/runner/hostedtoolcache/flutter/stable-3.19.3-arm64' }}
+          path: /Users/runner/hostedtoolcache/flutter/stable-$FLUTTER_VERSION-arm64
+          key: ${{ runner.OS }}-flutter-install-cache-${{ '/Users/runner/hostedtoolcache/flutter/stable-$FLUTTER_VERSION-arm64' }}
           save-always: true
       - name: Setup Flutter SDK
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version: 3.19.3
+          flutter-version: $FLUTTER_VERSION
       # OPTIONAL WORK
       # - name: Run Flutter doctor
       #   run: flutter doctor 
