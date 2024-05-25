@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-assets
-          path: build/outputs/flutter-apk
+          path: build/app/outputs/flutter-apk
   get-flutter-build:
       needs: run-flutter-build
       runs-on: macos-latest
