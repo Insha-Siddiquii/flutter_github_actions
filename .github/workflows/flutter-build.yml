@@ -30,8 +30,9 @@ jobs:
       - name: Run Flutter Test
         id: run-tests
         run: flutter test --file-reporter json:reports/tests.json
+        #continue-on-error: true # will run the below dependent job/steps even if this step failed.
       - name: Upload Test Report 
-        if: failure() && steps.run-tests.outcome == 'failure'
+        if: failure() && steps.run-tests.outcome == 'failure' #remove this if continue-on-error is set true in above step
         uses: actions/upload-artifact@v4
         with:
           name: test-report
