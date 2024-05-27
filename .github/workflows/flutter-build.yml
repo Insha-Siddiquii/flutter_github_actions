@@ -28,7 +28,14 @@ jobs:
       - name: Run Flutter doctor
         run: flutter doctor
       - name: Run Flutter Test
-        run: flutter test
+        id: run-tests
+        run: flutter test --file-reporter json:reports/tests.json
+      - name: Upload Test Report 
+        if: failure() && ${{ steps.run-tests.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: reports/tests.json
   run-flutter-build:
     needs: run-flutter-test
     runs-on: macos-latest
