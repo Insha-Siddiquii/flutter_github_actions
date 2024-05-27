@@ -64,7 +64,7 @@ jobs:
         id: publish-apk
         run: find build/app/outputs/flutter-apk/*.apk -type f -execdir echo 'apk-file={}' >> $GITHUB_OUTPUT ';'
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4 #this action will make the build available in GH UI to download
         with:
           name: build-assets
           path: build/app/outputs/flutter-apk
@@ -73,7 +73,7 @@ jobs:
       runs-on: macos-latest
       steps:
         - name: Get build Artifacts
-          uses: actions/download-artifact@v4
+          uses: actions/download-artifact@v4 #this action will make the build accessible or download for next process i.e. to release it on stores
           with:   
             name: build-assets
         - name: Output the build-assets contents
@@ -82,3 +82,13 @@ jobs:
           run: echo "${{ needs.run-flutter-build.outputs.apk-file }}"
         - name: Show secret 
           run: echo "APP_KEY_STORE -> ${{ secrets.APP_KEY_STORE }}"
+  #how to add conditional if on job level 
+  report:
+    needs: [run-flutter-test, get-flutter-build] #look for the all the job from start to end and if any fail then report job will start executing
+    if: failure()
+    runs-on: macos-latest
+    steps: 
+      - name: Output Informaiton
+        run: |
+          echo "Something went wrong"
+          echo "${{ toJSON(github) }}"
