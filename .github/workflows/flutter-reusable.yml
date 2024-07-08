@@ -5,5 +5,5 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Clone Repository
-        run: echo "clone repo"
+        uses: actions/checkout@v4
 

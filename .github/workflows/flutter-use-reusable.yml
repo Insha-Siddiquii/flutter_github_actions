@@ -5,4 +5,4 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Clone Repo
-        uses: ./.github/workflows/flutter-reusable.yml
+        uses: flutter-reusable.yml
