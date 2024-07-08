@@ -7,6 +7,12 @@ jobs:
         matrix:
           flutter-version: [3.22.2, 3.22.1]
           operating-system: [macos-latest, windows-latest]
+          # include: 
+          #   - flutter-version: 3.22.0
+          #     operating-system: macos-latest
+          # exclude: 
+          #   - flutter-version: 3.22.1
+          #     operating-system: windows-latest
       runs-on: ${{ matrix.operating-system }}
       steps:
         - name: Clone Repository
