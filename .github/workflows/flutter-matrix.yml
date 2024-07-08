@@ -1,7 +1,7 @@
 name: Flutter Matrix Demo
 on: workflow_dispatch
 jobs:
-    run-flutter-test:
+    install-flutter:
       continue-on-error: true
       strategy:
         matrix:

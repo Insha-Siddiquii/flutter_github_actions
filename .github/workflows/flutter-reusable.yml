@@ -1,0 +1,9 @@
+name: Reusable checkout repository
+on: workflow_call
+jobs:
+  checkout-repository:
+    runs-on: macos-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
+
