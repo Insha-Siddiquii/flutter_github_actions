@@ -1,0 +1,22 @@
+name: Flutter Matrix Demo
+on: workflow_dispatch
+jobs:
+    run-flutter-test:
+      continue-on-error: true
+      strategy:
+        matrix:
+          flutter-version: [3.22.2, 3.22.1]
+          operating-system: [macos-latest, windows-latest]
+      runs-on: ${{ matrix.operating-system }}
+      steps:
+        - name: Clone Repository
+          uses: actions/checkout@v4
+        - name: Setup Flutter SDK
+          uses: subosito/flutter-action@v2
+          with:
+            channel: stable
+            flutter-version: ${{ matrix.flutter-version }}
+        - name: Run Flutter doctor
+          run: flutter doctor
+        
+        
