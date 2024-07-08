@@ -1,8 +1,8 @@
-name:  Use Reusable workflow
+name: Use Reusable workflow
 on: workflow_dispatch
 jobs:
   use-reusable-workflow:
     runs-on: macos-latest
     steps:
       - name: Clone Repo
-        uses: flutter-reusable.yml
+        uses: ./.github/workflows/flutter-reusable.yml
